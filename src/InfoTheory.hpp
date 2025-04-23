@@ -17,7 +17,7 @@
  * @return Entropy value.
  */
 template <typename T>
-double CppEntropy_Disc(const std::vector<T>& vec, double base = 10) {
+double DiscEntropy(const std::vector<T>& vec, double base = 2) {
   std::unordered_map<T, int> counts;
   int n = vec.size();
 
@@ -47,9 +47,9 @@ double CppEntropy_Disc(const std::vector<T>& vec, double base = 10) {
  * @return Joint entropy value.
  */
 template <typename T>
-double CppJoinEntropy_Disc(const std::vector<std::vector<T>>& mat,
-                           const std::vector<int>& columns,
-                           double base = 10) {
+double DiscJoinEntropy(const std::vector<std::vector<T>>& mat,
+                       const std::vector<int>& columns,
+                       double base = 2) {
   const double log_base = std::log(base);
   std::unordered_map<std::string, int> counts;
   int valid_count = 0;
@@ -84,18 +84,18 @@ double CppJoinEntropy_Disc(const std::vector<std::vector<T>>& mat,
  * @return Mutual information value I(X; Y) = H(X) + H(Y) - H(X,Y).
  */
 template <typename T>
-double CppMutualInformation_Disc(const std::vector<std::vector<T>>& mat,
-                                 const std::vector<int>& columns1,
-                                 const std::vector<int>& columns2,
-                                 double base = 10) {
+double DiscMI(const std::vector<std::vector<T>>& mat,
+              const std::vector<int>& columns1,
+              const std::vector<int>& columns2,
+              double base = 10) {
   std::unordered_set<int> unique_set;
   unique_set.insert(columns1.begin(), columns1.end());
   unique_set.insert(columns2.begin(), columns2.end());
   std::vector<int> columns(unique_set.begin(), unique_set.end());
 
-  double h_x = CppJoinEntropy_Disc(mat, columns1, base);
-  double h_y = CppJoinEntropy_Disc(mat, columns2, base);
-  double h_xy = CppJoinEntropy_Disc(mat, columns, base);
+  double h_x = DiscJoinEntropy(mat, columns1, base);
+  double h_y = DiscJoinEntropy(mat, columns2, base);
+  double h_xy = DiscJoinEntropy(mat, columns, base);
 
   if (std::isnan(h_x) || std::isnan(h_y) || std::isnan(h_xy)) {
     return std::numeric_limits<double>::quiet_NaN();
@@ -114,17 +114,17 @@ double CppMutualInformation_Disc(const std::vector<std::vector<T>>& mat,
  * @return Conditional entropy value H(X | Y) = H(X,Y) - H(Y).
  */
 template <typename T>
-double CppConditionalEntropy_Disc(const std::vector<std::vector<T>>& mat,
-                                  const std::vector<int>& target_columns,
-                                  const std::vector<int>& conditional_columns,
-                                  double base = 10) {
+double DiscCE(const std::vector<std::vector<T>>& mat,
+              const std::vector<int>& target_columns,
+              const std::vector<int>& conditional_columns,
+              double base = 10) {
   std::unordered_set<int> unique_set;
   unique_set.insert(target_columns.begin(), target_columns.end());
   unique_set.insert(conditional_columns.begin(), conditional_columns.end());
   std::vector<int> columns(unique_set.begin(), unique_set.end());
 
-  double h_xy = CppJoinEntropy_Disc(mat, columns, base);
-  double h_y = CppJoinEntropy_Disc(mat, conditional_columns, base);
+  double h_xy = DiscJoinEntropy(mat, columns, base);
+  double h_y = DiscJoinEntropy(mat, conditional_columns, base);
 
   if (std::isnan(h_xy) || std::isnan(h_y)) {
     return std::numeric_limits<double>::quiet_NaN();
