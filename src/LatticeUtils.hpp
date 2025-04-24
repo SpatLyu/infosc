@@ -404,4 +404,6 @@ inline std::vector<std::vector<double>> GenLatticeEmbeddings(
 }
 // namespace LatticeUtils
 
+}
+
 #endif // LATTICE_UTILS_H
