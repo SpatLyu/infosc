@@ -9,10 +9,10 @@
 double RcppDiscEntropy(Rcpp::RObject vec, double base = 2) {
   if (TYPEOF(vec) == REALSXP) {
     std::vector<double> input = Rcpp::as<std::vector<double>>(vec);
-    return Rcpp::wrap(DiscEntropy(input, base));
+    return DiscEntropy(input, base);
   } else if (TYPEOF(vec) == INTSXP) {
     std::vector<int> input = Rcpp::as<std::vector<int>>(vec);
-    return Rcpp::wrap(DiscEntropy(input, base));
+    return DiscEntropy(input, base);
   } else {
     Rcpp::stop("Unsupported vector type. Must be numeric or integer.");
   }
