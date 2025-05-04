@@ -37,10 +37,40 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// RcppDiscMI
+double RcppDiscMI(const Rcpp::NumericMatrix& mat, const Rcpp::IntegerVector& columns1, const Rcpp::IntegerVector& columns2, double base);
+RcppExport SEXP _infosc_RcppDiscMI(SEXP matSEXP, SEXP columns1SEXP, SEXP columns2SEXP, SEXP baseSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const Rcpp::NumericMatrix& >::type mat(matSEXP);
+    Rcpp::traits::input_parameter< const Rcpp::IntegerVector& >::type columns1(columns1SEXP);
+    Rcpp::traits::input_parameter< const Rcpp::IntegerVector& >::type columns2(columns2SEXP);
+    Rcpp::traits::input_parameter< double >::type base(baseSEXP);
+    rcpp_result_gen = Rcpp::wrap(RcppDiscMI(mat, columns1, columns2, base));
+    return rcpp_result_gen;
+END_RCPP
+}
+// DiscCE
+double DiscCE(const Rcpp::NumericMatrix& mat, const Rcpp::IntegerVector& target_columns, const Rcpp::IntegerVector& conditional_columns, double base);
+RcppExport SEXP _infosc_DiscCE(SEXP matSEXP, SEXP target_columnsSEXP, SEXP conditional_columnsSEXP, SEXP baseSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const Rcpp::NumericMatrix& >::type mat(matSEXP);
+    Rcpp::traits::input_parameter< const Rcpp::IntegerVector& >::type target_columns(target_columnsSEXP);
+    Rcpp::traits::input_parameter< const Rcpp::IntegerVector& >::type conditional_columns(conditional_columnsSEXP);
+    Rcpp::traits::input_parameter< double >::type base(baseSEXP);
+    rcpp_result_gen = Rcpp::wrap(DiscCE(mat, target_columns, conditional_columns, base));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_infosc_RcppDiscEntropy", (DL_FUNC) &_infosc_RcppDiscEntropy, 2},
     {"_infosc_RcppDiscJoinEntropy", (DL_FUNC) &_infosc_RcppDiscJoinEntropy, 3},
+    {"_infosc_RcppDiscMI", (DL_FUNC) &_infosc_RcppDiscMI, 4},
+    {"_infosc_DiscCE", (DL_FUNC) &_infosc_DiscCE, 4},
     {NULL, NULL, 0}
 };
 

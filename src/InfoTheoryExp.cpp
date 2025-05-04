@@ -68,7 +68,7 @@ double RcppDiscMI(const Rcpp::NumericMatrix& mat,
     col2[i] -= 1;
   }
 
-  return columns(cppMat,col1,col2,base);
+  return DiscMI(cppMat,col1,col2,base);
 }
 
 // [[Rcpp::export]]
