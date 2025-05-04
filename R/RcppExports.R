@@ -2,6 +2,10 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 RcppDiscEntropy <- function(vec, base = 2) {
-    .Call('_infosc_RcppDiscEntropy', PACKAGE = 'infosc', vec, base)
+    .Call(`_infosc_RcppDiscEntropy`, vec, base)
+}
+
+RcppDiscJoinEntropy <- function(mat, columns, base = 2) {
+    .Call(`_infosc_RcppDiscJoinEntropy`, mat, columns, base)
 }
 
