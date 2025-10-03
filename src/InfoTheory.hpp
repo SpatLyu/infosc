@@ -13,7 +13,7 @@
  * Computes the entropy of a discrete sequence.
  * @tparam T Type of the input elements (e.g., int, double).
  * @param vec Input vector containing discrete values.
- * @param base Logarithm base (default: 10).
+ * @param base Logarithm base (default: 2).
  * @return Entropy value.
  */
 template <typename T>
@@ -43,7 +43,7 @@ double DiscEntropy(const std::vector<T>& vec, double base = 2) {
  * @tparam T Type of the input elements (e.g., int, double).
  * @param mat Input matrix where each row represents a sample containing multiple variables.
  * @param columns The columns which are used in joint entropy estimation.
- * @param base Logarithm base (default: 10).
+ * @param base Logarithm base (default: 2).
  * @return Joint entropy value.
  */
 template <typename T>
@@ -80,14 +80,14 @@ double DiscJoinEntropy(const std::vector<std::vector<T>>& mat,
  * @param mat Input matrix where each row represents a sample and each column a discrete variable.
  * @param columns1 Indices of columns representing the first set of variables (X).
  * @param columns2 Indices of columns representing the second set of variables (Y).
- * @param base Logarithm base used in entropy calculations (default: 10).
+ * @param base Logarithm base used in entropy calculations (default: 2).
  * @return Mutual information value I(X; Y) = H(X) + H(Y) - H(X,Y).
  */
 template <typename T>
 double DiscMI(const std::vector<std::vector<T>>& mat,
               const std::vector<int>& columns1,
               const std::vector<int>& columns2,
-              double base = 10) {
+              double base = 2) {
   std::unordered_set<int> unique_set;
   unique_set.insert(columns1.begin(), columns1.end());
   unique_set.insert(columns2.begin(), columns2.end());
@@ -110,14 +110,14 @@ double DiscMI(const std::vector<std::vector<T>>& mat,
  * @param mat Input matrix where each row is a sample and each column is a discrete variable.
  * @param target_columns Indices of columns representing the target variable(s) X.
  * @param conditional_columns Indices of columns representing the conditioning variable(s) Y.
- * @param base Logarithm base used in entropy calculations (default: 10).
+ * @param base Logarithm base used in entropy calculations (default: 2).
  * @return Conditional entropy value H(X | Y) = H(X,Y) - H(Y).
  */
 template <typename T>
 double DiscCE(const std::vector<std::vector<T>>& mat,
               const std::vector<int>& target_columns,
               const std::vector<int>& conditional_columns,
-              double base = 10) {
+              double base = 2) {
   std::unordered_set<int> unique_set;
   unique_set.insert(target_columns.begin(), target_columns.end());
   unique_set.insert(conditional_columns.begin(), conditional_columns.end());
