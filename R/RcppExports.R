@@ -9,11 +9,11 @@ RcppDiscJoinEntropy <- function(mat, columns, base = 2) {
     .Call(`_infosc_RcppDiscJoinEntropy`, mat, columns, base)
 }
 
-RcppDiscMI <- function(mat, columns1, columns2, base = 10) {
+RcppDiscMI <- function(mat, columns1, columns2, base = 2) {
     .Call(`_infosc_RcppDiscMI`, mat, columns1, columns2, base)
 }
 
-DiscCE <- function(mat, target_columns, conditional_columns, base = 10) {
+DiscCE <- function(mat, target_columns, conditional_columns, base = 2) {
     .Call(`_infosc_DiscCE`, mat, target_columns, conditional_columns, base)
 }
 
