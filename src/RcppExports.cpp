@@ -17,7 +17,6 @@ double RcppDiscEntropy(const Rcpp::NumericVector& vec, double base);
 RcppExport SEXP _infosc_RcppDiscEntropy(SEXP vecSEXP, SEXP baseSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const Rcpp::NumericVector& >::type vec(vecSEXP);
     Rcpp::traits::input_parameter< double >::type base(baseSEXP);
     rcpp_result_gen = Rcpp::wrap(RcppDiscEntropy(vec, base));
@@ -29,7 +28,6 @@ double RcppDiscJoinEntropy(const Rcpp::NumericMatrix& mat, const Rcpp::IntegerVe
 RcppExport SEXP _infosc_RcppDiscJoinEntropy(SEXP matSEXP, SEXP columnsSEXP, SEXP baseSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const Rcpp::NumericMatrix& >::type mat(matSEXP);
     Rcpp::traits::input_parameter< const Rcpp::IntegerVector& >::type columns(columnsSEXP);
     Rcpp::traits::input_parameter< double >::type base(baseSEXP);
@@ -42,7 +40,6 @@ double RcppDiscMI(const Rcpp::NumericMatrix& mat, const Rcpp::IntegerVector& col
 RcppExport SEXP _infosc_RcppDiscMI(SEXP matSEXP, SEXP columns1SEXP, SEXP columns2SEXP, SEXP baseSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const Rcpp::NumericMatrix& >::type mat(matSEXP);
     Rcpp::traits::input_parameter< const Rcpp::IntegerVector& >::type columns1(columns1SEXP);
     Rcpp::traits::input_parameter< const Rcpp::IntegerVector& >::type columns2(columns2SEXP);
@@ -56,7 +53,6 @@ double DiscCE(const Rcpp::NumericMatrix& mat, const Rcpp::IntegerVector& target_
 RcppExport SEXP _infosc_DiscCE(SEXP matSEXP, SEXP target_columnsSEXP, SEXP conditional_columnsSEXP, SEXP baseSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const Rcpp::NumericMatrix& >::type mat(matSEXP);
     Rcpp::traits::input_parameter< const Rcpp::IntegerVector& >::type target_columns(target_columnsSEXP);
     Rcpp::traits::input_parameter< const Rcpp::IntegerVector& >::type conditional_columns(conditional_columnsSEXP);
